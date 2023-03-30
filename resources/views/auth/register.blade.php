@@ -47,6 +47,33 @@
                                 </span>
                             @enderror
                         </div>
+          
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input type="text" class="form-control form-control-xl @error('nip') is-invalid @enderror" name="nip" value="{{ old('nip') }}" placeholder="NIP">
+                            <div class="form-control-icon">
+                                <i class="bi bi-sort-down"></i>
+                            </div>
+                            @error('nip')
+                                <span class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <label class="input-group-text"
+                            for="inputGroupSelect01">Jenis Kelamin</label>
+                            <select class="form-select @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" id="inputGroupSelect01">
+                                <option value="" selected>Choose...</option>
+                                <option value="laki_laki">Laki-Laki</option>
+                                <option value="perempuan">Perempuan</option>
+                            </select>
+                            @error('jenis_kelamin')
+                                <span class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
 
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="password" class="form-control form-control-xl @error('password') is-invalid @enderror" name="password" placeholder="Password">

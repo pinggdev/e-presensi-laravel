@@ -20,6 +20,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('role');
+            $table->string('nip');
+            $table->string('jenis_kelamin');
             $table->rememberToken();
             $table->timestamps();
         });
