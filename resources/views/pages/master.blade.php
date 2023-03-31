@@ -10,7 +10,7 @@
 
             <div class="page-heading">
                 <h3>Dashboard</h3>
-                <h4>Selamat Datang {{Auth::user()->name}}</h4>
+                {{-- <h4>Selamat Datang {{Auth::user()->name}}</h4> --}}
             </div>
             <div class="page-content">
                 @yield('content')
