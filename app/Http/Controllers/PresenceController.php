@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Presence;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 use Stevebauman\Location\Facades\Location;
 
@@ -158,4 +159,30 @@ class PresenceController extends Controller
     {
         //
     }
+
+    public function bynamedata()
+    {
+        // Mendapatkan user id yang sedang login
+        $userId = Auth::user()->id;
+
+        // Mendapatkan data presensi berdasarkan user_id
+        $presences = Presence::where('user_id', $userId)->get();
+
+        // Mengembalikan data presensi ke view
+        return view('user.presence.bynamedata', compact('presences'));
+    }
+
+    public function pdfbyname()
+    {
+        // Mendapatkan user id yang sedang login
+        $userId = Auth::user()->id;
+    
+        // Mendapatkan data presensi berdasarkan user_id
+        $presences = Presence::where('user_id', $userId)->get()->toArray();
+    
+        $pdf = Pdf::loadView('user.presence.pdf.byname', ['presences' => $presences]);
+        return $pdf->download('data-absen-saya.pdf');
+    }
+    
+
 }

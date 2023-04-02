@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('presences', PresenceController::class);
+    Route::get('/by-name-data', [PresenceController::class, 'bynamedata']);
+    Route::get('/print-data-saya', [PresenceController::class, 'pdfbyname']);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

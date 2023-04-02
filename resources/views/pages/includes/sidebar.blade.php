@@ -37,6 +37,21 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-paperclip"></i>
+                        <span>Data Absen</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="/by-name-data">Data Absen Saya</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{ route('users.index') }}">Data Absen Saya per Bulan</a>
+                        </li>
+                    </ul>
+                </li>
+
                 
                 @if (Auth::user()->role === "admin")
 
@@ -54,7 +69,7 @@
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
-                        <i class="bi bi-people-fill"></i>
+                        <i class="bi bi-calendar-date-fill"></i>
                         <span>Presences</span>
                     </a>
                     <ul class="submenu ">
@@ -64,22 +79,6 @@
                     </ul>
                 </li>
               
-                @endif
-
-                @if (Auth::user()->role === "guru" || Auth::user()->role === "tata_usaha")
-
-                    <li class="sidebar-item  has-sub">
-                        <a href="#" class='sidebar-link'>
-                            <i class="bi bi-people-fill"></i>
-                            <span>Absen</span>
-                        </a>
-                        <ul class="submenu ">
-                            <li class="submenu-item ">
-                                <a href="{{ route('presences.index') }}">Presensi</a>
-                            </li>
-                        </ul>
-                    </li>
-                    
                 @endif
 
             </ul>
