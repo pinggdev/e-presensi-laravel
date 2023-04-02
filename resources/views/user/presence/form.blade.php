@@ -8,6 +8,22 @@
     @endif
     <div class="card">
         <div class="card-header">
+            <h4 class="card-title">Aturan</h4>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-content">
+                    <div class="card-body">
+                        <p>Pagi : dimulai pukul 04.00 WIB - 07.00 WIB (senin - Jum'at)</p>
+                        <p>Sore : dimulai pukul 15.30 WIB - 22.30 WIB (senin - Kamis)</p>
+                        <p>Sore : dimulai pukul 14.00 WIB - 21.00 WIB (Jum'at)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
             <h4 class="card-title">Absen Masuk</h4>
         </div>
         <div class="card-content">
