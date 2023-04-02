@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Presence;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -172,6 +173,23 @@ class PresenceController extends Controller
         return view('user.presence.bynamedata', compact('presences'));
     }
 
+    public function bymonthdata(Request $request)
+    {
+        $month = $request->input('month');
+        $userId = Auth::user()->id;
+
+        if ($month) {
+            $presences = Presence::where('user_id', $userId)
+                ->whereMonth('tanggal_presensi', $month)
+                ->get();
+            return view('user.presence.bymonthdata', compact('presences', 'month'));
+        } else {
+            $presences = Presence::where('user_id', $userId)
+                ->get();
+            return view('user.presence.bymonthdata', compact('presences' ,'month'));
+        }
+    }
+
     public function pdfbyname()
     {
         // Mendapatkan user id yang sedang login
@@ -182,6 +200,26 @@ class PresenceController extends Controller
     
         $pdf = Pdf::loadView('user.presence.pdf.byname', ['presences' => $presences]);
         return $pdf->download('data-absen-saya.pdf');
+    }
+
+    public function pdfbymonth($month = '')
+    {
+        $userId = Auth::user()->id;
+    
+        if($month == '') {
+            $presences = Presence::where('user_id', $userId)
+            ->get()->toArray();
+            
+            $pdf = Pdf::loadView('user.presence.pdf.bymonth', ['presences' => $presences]);
+            return $pdf->download('data-absen-bulanan-saya.pdf');
+        } else {
+            $presences = Presence::where('user_id', $userId)
+            ->whereMonth('tanggal_presensi', $month)
+            ->get()->toArray();
+            
+            $pdf = Pdf::loadView('user.presence.pdf.bymonth', ['presences' => $presences]);
+            return $pdf->download('data-absen-bulanan-saya.pdf');
+        }
     }
     
 

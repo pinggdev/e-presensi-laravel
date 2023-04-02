@@ -47,7 +47,7 @@
                             <a href="/by-name-data">Data Absen Saya</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="{{ route('users.index') }}">Data Absen Saya per Bulan</a>
+                            <a href="/by-month-data">Data Absen Saya per Bulan</a>
                         </li>
                     </ul>
                 </li>

@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-    <h2>Data Absen {{ Auth::user()->name }}</h2>
+    <h2>Data Absen Bulanan {{ Auth::user()->name }}</h2>
     <p>Nama : {{ Auth::user()->name }}</p>
     <p>NIP : {{ Auth::user()->nip }}</p>
    
