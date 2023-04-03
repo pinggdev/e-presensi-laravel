@@ -38,8 +38,8 @@ class PresenceController extends Controller
 
         // Mendapatkan lokasi berdasarkan alamat IP
         $location = Location::get($data['query']);
-        $kantor_latitude = 3.5847;
-        $kantor_longitude = 98.6629;
+        $kantor_latitude = -7.4285881;
+        $kantor_longitude = 110.8891864;
         $user_latitude = Location::get($data['query'])->latitude;
         $user_longitude = Location::get($data['query'])->longitude;
         
@@ -50,7 +50,7 @@ class PresenceController extends Controller
         $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
         $distance = $earth_radius * $c; // Distance between the two points in km
 
-        $max_distance = 0.5; // Maximum distance in km
+        $max_distance = 1.0; // Maximum distance in km
 
         $userId = Auth::user()->id;
         $tanggal = date('Y-m-d');
