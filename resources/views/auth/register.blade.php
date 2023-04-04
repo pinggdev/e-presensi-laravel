@@ -15,11 +15,14 @@
 <body>
     <div id="auth">
 
-        <div class="row h-100">
-            <div class="col-lg-5 col-12">
+        <div class="row h-100 justify-content-md-center">
+            <div class="col-lg-6 col-12">
                 <div id="auth-left">
-                    <h1 class="auth-title">Sign Up</h1>
-                    <p class="auth-subtitle mb-5">Input your data to register to our website.</p>
+                    <div class="d-flex justify-content-center">
+                        <img src="{{ asset('assets/images/logo/logosmk.png') }}" alt="logo-smk" class="img-fluid" style="width: 15%">
+                    </div>
+                    <h1 class="auth-title text-center">Daftar</h1>
+                    <p class="auth-subtitle mb-5 text-center">Isi data mu agar terdaftar pada website.</p>
 
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
@@ -64,7 +67,7 @@
                             <label class="input-group-text"
                             for="inputGroupSelect01">Jenis Kelamin</label>
                             <select class="form-select @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" id="inputGroupSelect01">
-                                <option value="" selected>Choose...</option>
+                                <option value="" selected>Pilih...</option>
                                 <option value="laki_laki">Laki-Laki</option>
                                 <option value="perempuan">Perempuan</option>
                             </select>
@@ -98,7 +101,7 @@
                             <label class="input-group-text"
                             for="inputGroupSelect01">Role</label>
                             <select class="form-select @error('role') is-invalid @enderror" name="role" id="inputGroupSelect01">
-                                <option value="" selected>Choose...</option>
+                                <option value="" selected>Pilih...</option>
                                 <option value="guru">Guru</option>
                                 <option value="tata_usaha">Tata Usaha</option>
                             </select>
@@ -109,20 +112,19 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Sign Up</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Daftar</button>
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
-                        <p class='text-gray-600'>Already have an account? <a href="{{ route('login') }}"
-                                class="font-bold">Log
-                                in</a>.</p>
+                        <p class='text-gray-600'>Sudah punya akun? <a href="{{ route('login') }}"
+                                class="font-bold">Masuk</a></p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-7 d-none d-lg-block">
+            {{-- <div class="col-lg-7 d-none d-lg-block">
                 <div id="auth-right">
 
                 </div>
-            </div>
+            </div> --}}
         </div>
 
     </div>

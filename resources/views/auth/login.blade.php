@@ -15,11 +15,14 @@
 <body>
     <div id="auth">
 
-        <div class="row h-100">
-            <div class="col-lg-5 col-12">
+        <div class="row h-100 justify-content-md-center">
+            <div class="col-lg-6 col-12">
                 <div id="auth-left">
-                    <h1 class="auth-title">Log in.</h1>
-                    <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
+                    <div class="d-flex justify-content-center">
+                        <img src="{{ asset('assets/images/logo/logosmk.png') }}" alt="logo-smk" class="img-fluid" style="width: 15%">
+                    </div>
+                    <h1 class="auth-title text-center">Masuk</h1>
+                    <p class="auth-subtitle mb-5 text-center">Masuk dengan data yang sudah kamu daftarkan sebelumnya.</p>
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -49,19 +52,19 @@
                             {{-- <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault"> --}}
                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                             <label class="form-check-label text-gray-600" for="flexCheckDefault">
-                                Keep me logged in
+                                Biarkan tetap masuk
                             </label>
                         </div>
                         {{-- <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button> --}}
                         <button type="submit" class="btn btn-primary tn-block btn-lg shadow-lg mt-5">
-                            {{ __('Login') }}
+                            {{ __('Masuk') }}
                         </button>
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
-                        <p class="text-gray-600">Don't have an account? 
+                        <p class="text-gray-600">Belum punya akun? 
                             {{-- <a href="auth-register.html" class="font-bold">Sign up</a> --}}
                                 @if (Route::has('register'))
-                                        <a class="font-bold" href="{{ route('register') }}">Sign up</a>
+                                        <a class="font-bold" href="{{ route('register') }}">Daftar</a>
                                 @endif
                         </p>    
                         {{-- <p><a class="font-bold" href="auth-forgot-password.html">Forgot password?</a></p> --}}
@@ -75,11 +78,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-7 d-none d-lg-block">
+            {{-- <div class="col-lg-7 d-none d-lg-block">
                 <div id="auth-right">
 
                 </div>
-            </div>
+            </div> --}}
         </div>
 
     </div>
