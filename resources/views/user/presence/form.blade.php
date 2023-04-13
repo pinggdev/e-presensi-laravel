@@ -52,33 +52,15 @@
                                     {{ "disabled" }}
                                 @endif>
                                     <option value="">Pilih...</option>    
-                                    <option value="t" @if ($keteranganMasuk === "t")
-                                        selected
-                                    @endif>Terlambat</option> 
-                                    <option value="a" @if ($keteranganMasuk === "a")
-                                        selected
-                                    @endif>Alpha</option> 
-                                    <option value="h" @if ($keteranganMasuk === "h")
-                                        selected
-                                    @endif>Hadir</option> 
-                                    <option value="tam" @if ($keteranganMasuk === "tam")
-                                        selected
-                                    @endif>Tidak Absen Masuk</option> 
-                                    <option value="tap" @if ($keteranganMasuk === "tap")
-                                        selected
-                                    @endif>Tidak Absen Pulang</option> 
-                                    <option value="p" @if ($keteranganMasuk === "p")
-                                        selected
-                                    @endif>Pulang Cepat</option> 
-                                    <option value="tp" @if ($keteranganMasuk === "tp")
-                                        selected
-                                    @endif>Terlambat dan Pulang Cepat</option> 
-                                    <option value="tamp" @if ($keteranganMasuk === "tamp")
-                                        selected
-                                    @endif>Tidak Absen Masuk dan Pulang Cepat</option> 
-                                    <option value="tapt" @if ($keteranganMasuk === "tapt")
-                                        selected
-                                    @endif>Tidak Absen Pulang dan Terlambat</option> 
+                                    @if ((now()->isMonday() || now()->isTuesday() || now()->isWednesday() || now()->isThursday()) && now()->hour > 7 && now()->hour <= 15 && now()->minute <= 30)
+                                    <option value="T" @if ($keteranganMasuk === "T") selected @endif>Terlambat</option> 
+                                    @elseif (now()->isFriday() && now()->hour > 7 && now()->hour <= 14)
+                                        <option value="T" @if ($keteranganMasuk === "T") selected @endif>Terlambat</option> 
+                                    @endif
+                                    @if ((now()->isMonday() || now()->isTuesday() || now()->isWednesday() || now()->isThursday() || now()->isFriday()) && now()->hour >= 4 && now()->hour < 7)
+                                        <option value="H" @if ($keteranganMasuk === "H") selected @endif>Hadir</option> 
+                                    @endif
+                                    <option value="TAM" @if ($keteranganMasuk === "TAM") selected @endif>Tidak Absen Masuk</option> 
                                 </select>
                                 @error('keterangan_masuk')
                                     <span class="text-danger">{{ $message }}</span>
@@ -129,32 +111,29 @@
                                 <select class="form-select @error('keterangan_pulang') {{ 'is-invalid' }} @enderror" id="basicSelect" name="keterangan_pulang" @if ($distance >= $max_distance || $checkOut)
                                     {{ "disabled" }}
                                 @endif>
-                                    <option value="">Pilih...</option>    
-                                    <option value="t" @if ($keteranganPulang === "t")
+                                    <option value="">Pilih...</option>
+                                    @if ((now()->isMonday() || now()->isTuesday() || now()->isWednesday() || now()->isThursday()) && (now()->hour >= 15 && (now()->hour < 22 || (now()->hour == 22 && now()->minute == 30))))
+                                        <option value="H" @if ($keteranganMasuk === "H") selected @endif>Hadir</option> 
+                                    @elseif (now()->isFriday() && (now()->hour >= 14 && (now()->hour < 21 || (now()->hour == 21 && now()->minute == 0)))))
+                                        <option value="H" @if ($keteranganMasuk === "H") selected @endif>Hadir</option>
+                                    @endif
+                                    <option value="TAP" @if ($keteranganPulang === "TAP")
                                     selected
-                                @endif>Terlambat</option> 
-                                    <option value="a" @if ($keteranganPulang === "a")
-                                    selected
-                                @endif>Alpha</option> 
-                                    <option value="h" @if ($keteranganPulang === "h")
-                                    selected
-                                @endif>Hadir</option> 
-                                    <option value="tam" @if ($keteranganPulang === "tam")
-                                    selected
-                                @endif>Tidak Absen Masuk</option> 
-                                    <option value="tap" @if ($keteranganPulang === "tap")
-                                    selected
-                                @endif>Tidak Absen Pulang</option> 
-                                    <option value="p" @if ($keteranganPulang === "p")
-                                        selected
-                                    @endif>Pulang Cepat</option> 
-                                    <option value="tp" @if ($keteranganPulang === "tp")
+                                @endif>Tidak Absen Pulang</option>
+
+                                @if ((now()->isMonday() || now()->isTuesday() || now()->isWednesday() || now()->isThursday()) && (now()->hour >= 7 && now()->hour < 22 && (now()->hour != 21 || now()->minute == 0)))
+                                    <option value="P" @if ($keteranganPulang === "P") selected @endif>Pulang Cepat</option>
+                                @elseif (now()->isFriday() && now()->hour >= 7 && now()->hour < 21 && (now()->hour != 20 || now()->minute == 0))
+                                    <option value="P" @if ($keteranganPulang === "P") selected @endif>Pulang Cepat</option>
+                                @endif
+                            
+                                    <option value="TP" @if ($keteranganPulang === "TP")
                                     selected
                                 @endif>Terlambat dan Pulang Cepat</option> 
-                                    <option value="tamp" @if ($keteranganPulang === "tamp")
+                                    <option value="TAMP" @if ($keteranganPulang === "TAMP")
                                     selected
                                 @endif>Tidak Absen Masuk dan Pulang Cepat</option> 
-                                    <option value="tapt" @if ($keteranganPulang === "tapt")
+                                    <option value="TAPT" @if ($keteranganPulang === "TAPT")
                                     selected
                                 @endif>Tidak Absen Pulang dan Terlambat</option> 
                                 </select>

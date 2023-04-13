@@ -2,6 +2,9 @@
 
 namespace App\Console;
 
+use App\Models\User;
+use App\Models\Presence;
+use App\Console\Commands\AutoStorePresence; // ubah namespace pada baris ini
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,10 +16,15 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
+    protected $commands = [
+        AutoStorePresence::class,
+    ];
+
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('presence:auto-store')->dailyAt('23:59');
     }
+    
 
     /**
      * Register the commands for the application.
