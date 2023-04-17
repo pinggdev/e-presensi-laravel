@@ -52,11 +52,11 @@
                                     {{ "disabled" }}
                                 @endif>
                                     <option value="">Pilih...</option>    
-                                    @if ((now()->isMonday() || now()->isTuesday() || now()->isWednesday() || now()->isThursday()) && now()->hour > 7 && now()->hour <= 15 && now()->minute <= 30)
+                                @if ((now()->isMonday() || now()->isTuesday() || now()->isWednesday() || now()->isThursday()) && now()->hour >= 7 && now()->hour < 15 && now()->minute <= 30)
+                                <option value="T" @if ($keteranganMasuk === "T") selected @endif>Terlambat</option> 
+                                @elseif (now()->isFriday() && now()->hour >= 7 && now()->hour < 14)
                                     <option value="T" @if ($keteranganMasuk === "T") selected @endif>Terlambat</option> 
-                                    @elseif (now()->isFriday() && now()->hour > 7 && now()->hour <= 14)
-                                        <option value="T" @if ($keteranganMasuk === "T") selected @endif>Terlambat</option> 
-                                    @endif
+                                @endif                                
                                     @if ((now()->isMonday() || now()->isTuesday() || now()->isWednesday() || now()->isThursday() || now()->isFriday()) && now()->hour >= 4 && now()->hour < 7)
                                         <option value="H" @if ($keteranganMasuk === "H") selected @endif>Hadir</option> 
                                     @endif
