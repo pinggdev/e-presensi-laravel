@@ -30,12 +30,14 @@
                     </form>
                 </li>
 
+                @if (Auth::user()->role === "guru" || Auth::user()->role === "kepsek" || Auth::user()->role === "tata_usaha")
                 <li class="sidebar-item  ">
                     <a href="{{ route('presences.create') }}" class='sidebar-link'>
                         <i class="bi bi-calendar-date-fill"></i>
                         <span>Absen</span>
                     </a>
                 </li>
+                @endif
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
