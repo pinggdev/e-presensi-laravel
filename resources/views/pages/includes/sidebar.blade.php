@@ -37,7 +37,6 @@
                         <span>Absen</span>
                     </a>
                 </li>
-                @endif
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
@@ -53,9 +52,17 @@
                         </li>
                     </ul>
                 </li>
+                @endif
 
                 
                 @if (Auth::user()->role === "admin")
+
+                <li class="sidebar-item">
+                    <a href="/data-guru" class='sidebar-link'>
+                        <i class="bi bi-paperclip"></i>
+                        <span>Data Guru</span>
+                    </a>
+                </li>
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>

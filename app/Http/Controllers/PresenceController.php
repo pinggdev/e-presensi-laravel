@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Presence;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -190,6 +191,24 @@ class PresenceController extends Controller
         }
     }
 
+    public function dataguru(Request $request)
+    {
+        $username = $request->input('name');
+        
+        // mengambil user berdasarkan nama
+        $user = User::where('name', $username)->first();
+    
+        if ($user) {
+            $presences = Presence::where('user_id', $user->id)->get();
+            return view('user.presence.dataguru', compact('presences', 'username'));
+        } else {
+            $presences = Presence::all();
+            return view('user.presence.dataguru', compact('presences' ,'username'));
+        }
+    }
+    
+     
+
     public function pdfbyname()
     {
         // Mendapatkan user id yang sedang login
@@ -221,6 +240,24 @@ class PresenceController extends Controller
             return $pdf->download('data-absen-bulanan-saya.pdf');
         }
     }
-    
 
+    public function pdfdataguru($username = '')
+    {
+        $user = User::where('name', $username)->first();
+    
+        if($username == '') {
+            $presences = Presence::all()->toArray();
+            
+            $pdf = Pdf::loadView('user.presence.pdf.datagurupdf', ['presences' => $presences]);
+            return $pdf->download('data-absen-guru.pdf');
+        } else {
+            $presences = Presence::where('user_id', $user->id)
+            ->get()->toArray();
+            
+            $pdf = Pdf::loadView('user.presence.pdf.datagurupdf', ['presences' => $presences]);
+            return $pdf->download('data-absen-guru.pdf');
+        }
+    }
+    
+    
 }
