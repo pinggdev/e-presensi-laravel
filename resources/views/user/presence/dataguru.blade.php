@@ -12,7 +12,7 @@
                         <input type="text" class="form-control" name="name" value="{{$username}}" placeholder="Cari Nama...">
                     </div>
                     <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary me-1 mb-1">Tambah</button>
+                        <button type="submit" class="btn btn-primary me-1 mb-1">Cari</button>
                         <a href="/print-data-guru/{{$username}}" class="btn btn-primary me-1 mb-1" target="__blank">Print</a>
                     </div>
                 </div>

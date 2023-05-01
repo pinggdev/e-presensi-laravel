@@ -246,15 +246,23 @@ class PresenceController extends Controller
         $user = User::where('name', $username)->first();
     
         if($username == '') {
-            $presences = Presence::all()->toArray();
+            $presences = Presence::join('users', 'users.id', '=', 'presences.user_id')
+            ->select('presences.*', 'users.name')
+            ->get()
+            ->toArray();
+
             
-            $pdf = Pdf::loadView('user.presence.pdf.datagurupdf', ['presences' => $presences]);
+            $pdf = Pdf::loadView('user.presence.pdf.datagurupdf', ['presences' => $presences], ['username' => $username]);
             return $pdf->download('data-absen-guru.pdf');
         } else {
             $presences = Presence::where('user_id', $user->id)
-            ->get()->toArray();
+            ->join('users', 'users.id', '=', 'presences.user_id')
+            ->select('presences.*', 'users.name')
+            ->get()
+            ->toArray();
+            // ->get()->toArray();
             
-            $pdf = Pdf::loadView('user.presence.pdf.datagurupdf', ['presences' => $presences]);
+            $pdf = Pdf::loadView('user.presence.pdf.datagurupdf', ['presences' => $presences], ['username' => $username]);
             return $pdf->download('data-absen-guru.pdf');
         }
     }
